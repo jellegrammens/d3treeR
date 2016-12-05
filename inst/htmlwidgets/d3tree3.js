@@ -22,6 +22,9 @@ HTMLWidgets.widget({
     var valueField = x.options.valueField ? x.options.valueField : "size";
     var celltext = x.options.celltext ? x.options.celltext : "name";
     var cellid = x.options.id ? x.options.id : "id";
+	// Added by jellegrammens //
+	var vColor = x.data.vColor ? x.data.vColor : "vColor";
+	var vSize = x.data.vSize ? x.data.vSize : "vSize";
 
     // thanks Mike Bostock and Zan Armstrong for all the code on which
     //    this is based
@@ -359,7 +362,7 @@ HTMLWidgets.widget({
 
         // add a hook to Shiny
         if( HTMLWidgets.shinyMode ){
-          Shiny.onInputChange(el.id + '_click', {name:d[celltext],id:d[cellid]});
+          Shiny.onInputChange(el.id + '_click', {name:d[celltext],id:d[cellid],vColor:d[vColor],vSize:d[vSize]}); //added vColor and vSize by jellegrammens
         }
 
         // check for additional clickAction to perform
@@ -374,7 +377,7 @@ HTMLWidgets.widget({
           ciSpan.style('opacity', 1);
           triangle.attr('transform', 'translate(' + scale(d.vColorValue) + ',20)');
           value.attr('transform', 'translate(' + scale(d.vColorValue) + ',10)').text(format(d.vColorValue));
-
+		/*
           if (d.stdErr) {
             ciRect.attr('x', scale(d.vColorValue))
                 .attr('width', 0);
@@ -396,6 +399,7 @@ HTMLWidgets.widget({
             ciUpper.transition().duration(750).style('opacity', 1);
 
           }
+		*/
 
         }
       };
